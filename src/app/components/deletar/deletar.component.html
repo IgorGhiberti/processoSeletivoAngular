@@ -1,0 +1,28 @@
+<mat-card>
+<div>
+  <h1>Deletar Departamento</h1>
+</div>
+
+<div *ngIf="departamento">
+  <form>
+    <div class="input-box">
+      <mat-form-field>
+        <mat-label>Nome: </mat-label>
+        <input type="text" value="{{ departamento.nome }}" disabled matInput>
+      </mat-form-field>
+    </div>
+
+    <div class="input-box">
+      <mat-form-field>
+      <mat-label>Sigla: </mat-label>
+      <input type="text" value="{{ departamento.sigla }}" disabled matInput>
+    </mat-form-field>
+    </div>
+
+    <div class="btn-box">
+      <button (click)="deleteDepartamento(departamento)" mat-raised-button color="warn">Deletar Departamento</button>
+      <button routerLink="" mat-raised-button>Voltar</button>
+    </div>
+  </form>
+</div>
+</mat-card>

@@ -1,0 +1,25 @@
+<mat-card>
+  <h1>{{ btnTitulo }}</h1>
+
+  <form [formGroup]="departamentoForm" (ngSubmit)="submit()" #formDit="ngForm">
+    <input type="hidden" formControlName="id">
+
+    <div>
+      <mat-form-field>
+      <mat-label for="">Nome: </mat-label>
+      <input matInput type="text" formControlName="nome" placeholder="Insira o nome do Departamento" required>
+    </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+      <mat-label for="">Sigla: </mat-label>
+      <input matInput type="text" formControlName="sigla" placeholder="Insira a sigla do Departamento" required>
+    </mat-form-field>
+    </div>
+
+    <div class="btn-box">
+      <button type="submit" [disabled]="!departamentoForm.valid" mat-raised-button color="primary">{{ btnAcao }}</button>
+      <button routerLink="" mat-raised-button>Voltar</button>
+    </div>
+  </form>
+</mat-card>
