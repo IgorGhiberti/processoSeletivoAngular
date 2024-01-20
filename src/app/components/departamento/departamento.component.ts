@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DepartamentoService } from '../../services/departamento.service';
 import { Departamentos } from '../../models/departamento.model';
 import { ActivatedRoute } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-departamento',
   templateUrl: './departamento.component.html',
@@ -9,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DepartamentoComponent implements OnInit {
   departamentos!: Departamentos[];
+  dataSource = new MatTableDataSource<Departamentos>(this.departamentos);
   departamentoSelecionado: Departamentos | null = null;;
   id!: number;
   colunas = ['Situação', 'Id', 'Nome', 'Sigla', 'Editar', 'Ações', 'Excluir'];
@@ -20,11 +22,11 @@ export class DepartamentoComponent implements OnInit {
 
   getDepartamentos(){
     this.departamentoService.getDepartamentos().subscribe((data: Departamentos[]) =>{
-      this.departamentos=data;
+      this.dataSource.data = data;
     })
   }
 
-  buscar(): void {
+/*  buscar(): void {
     this.departamentoService.getDepartamentoById(this.id).subscribe(
       (data: Departamentos) => {
         this.departamentoSelecionado = data;
@@ -37,23 +39,34 @@ export class DepartamentoComponent implements OnInit {
         this.departamentoSelecionado = null;
       }
     );
+}*/
+
+aplicarFiltro(event: Event){
+  var valorFiltro = (event.target as HTMLInputElement).value.toLowerCase();
+  if (valorFiltro == '')
+  {
+    this.getDepartamentos();
+  }
+  else{
+    var listaData = this.dataSource.data;
+    var listaFiltrada = listaData.filter(element => element.nome.toLowerCase().includes(valorFiltro));
+    this.dataSource.data = listaFiltrada;
+  }
 }
 
 
   desativar(index: number) {
-    const id = this.departamentos[index].id;
+    const id = this.dataSource.data[index].id;
     this.departamentoService.desativarDepartamento(id).subscribe((data: Departamentos) => {
       this.departamentoSelecionado = data;
-      //this.departamentos = data.filter(depto => depto.id === id)
       this.getDepartamentos();
     });
   }
 
   reativar(index: number) {
-    const id = this.departamentos[index].id;
+    const id = this.dataSource.data[index].id;
     this.departamentoService.reativarDepartamento(id).subscribe((data: Departamentos) =>{
       this.departamentoSelecionado = data;
-
       this.getDepartamentos();
 
     })
