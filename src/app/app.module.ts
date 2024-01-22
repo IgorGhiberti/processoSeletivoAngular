@@ -12,7 +12,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EditarComponent } from './components/editar/editar.component';
 import { DeletarComponent } from './components/deletar/deletar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { FuncionarioComponent } from './components-funcionarios/funcionario/funcionario.component';
+import { CadastroFuncionarioComponent } from './components-funcionarios/cadastro-funcionario/cadastro-funcionario.component';
+import { FormularioFuncionarioComponent } from './components-funcionarios/formulario-funcionario/formulario-funcionario.component';
+import { EditarFuncionarioComponent } from './components-funcionarios/editar-funcionario/editar-funcionario.component';
+import { DeletarFuncionarioComponent } from './components-funcionarios/deletar-funcionario/deletar-funcionario.component';
 /*Angular Material */
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -26,7 +30,12 @@ import { MatTableModule } from '@angular/material/table';
     CadastroComponent,
     FormularioDepartamentoComponent,
     EditarComponent,
-    DeletarComponent
+    DeletarComponent,
+    FuncionarioComponent,
+    CadastroFuncionarioComponent,
+    FormularioFuncionarioComponent,
+    EditarFuncionarioComponent,
+    DeletarFuncionarioComponent
   ],
   imports: [
     BrowserModule,

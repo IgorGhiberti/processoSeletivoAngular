@@ -1,0 +1,36 @@
+<mat-card>
+<h1>{{ btnTitulo }}</h1>
+
+<form [formGroup]="funcionarioForm" (ngSubmit)="submitFun()" #formDit="ngForm">
+  <input type="hidden" formControlName="id">
+
+  <div class="input-box">
+    <mat-form-field>
+      <mat-label for="">Nome: </mat-label>
+      <input matInput type="text" formControlName="nome" placeholder="Insira o nome do funcionário" required>
+    </mat-form-field>
+  </div>
+
+  <div class="input-box">
+    <mat-form-field>
+      <mat-label for="">Foto: </mat-label>
+      <input matInput type="text" formControlName="foto" placeholder="Insira o link da foto">
+    </mat-form-field>
+  </div>
+
+  <div class="input-box">
+    <mat-form-field>
+      <mat-label for="">RG: </mat-label>
+      <input matInput pattern="[0-9]*" title="Somente números são permitidos" type="text" formControlName="rg" placeholder="Insira o RG do funcionário" required>
+    </mat-form-field>
+  </div>
+
+  <input type="hidden" formControlName="departamentoId" value="{{departamentoId}}">
+
+  <div class="btn-box">
+    <button type="submit" [disabled]="!funcionarioForm.valid" mat-raised-button color="primary">{{ btnAcao }}</button>
+    <button [routerLink]="['/funcionario', departamentoId]" mat-raised-button>Voltar</button>
+  </div>
+
+</form>
+</mat-card>

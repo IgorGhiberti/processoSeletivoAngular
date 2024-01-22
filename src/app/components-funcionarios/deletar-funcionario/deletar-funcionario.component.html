@@ -1,0 +1,35 @@
+<mat-card>
+  <div>
+    <h1>Deletar Funcionário</h1>
+  </div>
+
+  <div *ngIf="funcionario">
+    <form>
+      <div class="input-box">
+        <mat-form-field>
+          <mat-label>Nome: </mat-label>
+          <input matInput type="text" [value]="funcionario.nome" disabled>
+        </mat-form-field>
+      </div>
+
+      <div class="input-box">
+        <mat-form-field>
+          <mat-label>Foto: </mat-label>
+          <input matInput type="text" [value]="funcionario.foto" disabled>
+        </mat-form-field>
+      </div>
+
+      <div class="input-box">
+        <mat-form-field>
+          <mat-label>RG: </mat-label>
+          <input matInput type="text" [value]="funcionario.rg" disabled>
+        </mat-form-field>
+      </div>
+
+      <div class="btn-box">
+        <button mat-raised-button color="warn" (click)="deleteFuncionario(funcionario)">Deletar</button>
+        <button mat-raised-button [routerLink]="['/funcionario', departamentoId]">Voltar</button>
+      </div>
+    </form>
+  </div>
+</mat-card>

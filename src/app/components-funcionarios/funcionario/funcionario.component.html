@@ -1,0 +1,76 @@
+<mat-card>
+  <div>
+    <button [routerLink]="'/funcionario/' + idDepartamento + '/cadastro'" mat-flat-button color="primary">Cadastrar novo funcionário</button>
+    <button routerLink="" mat-flat-button>Voltar para lista de Departamentos</button>
+    <div>
+      <br>
+      <mat-form-field>
+        <mat-label>Procurar Funcionário: </mat-label>
+        <input matInput type="text" (keyup)="aplicarFiltroFuncionario($event)">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <table mat-table [dataSource]="dataSourceFuncionario" class="mat-elevation-z8">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="Situação">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let funcionario">
+        <div *ngIf="funcionario.ativo == true">
+          <img src="assets/Images/Ativo (1).png" style="height: 20px; width: 20px;">
+      </div>
+        <div *ngIf="funcionario.ativo == false">
+          <img src="assets/Images/Inativo (1).png"style="height: 20px; width: 20px;">
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Nome">
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <td mat-cell *matCellDef="let funcionario"> {{funcionario.nome}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="Foto">
+      <th mat-header-cell *matHeaderCellDef> Foto </th>
+      <td mat-cell *matCellDef="let funcionario">
+        <ng-container *ngIf="funcionario.foto !== null">
+          <img [src]="funcionario.foto" width="150" height="150">
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="RG">
+      <th mat-header-cell *matHeaderCellDef> RG </th>
+      <td mat-cell *matCellDef="let funcionario"> {{funcionario.rg}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Editar">
+      <th mat-header-cell *matHeaderCellDef> Editar </th>
+      <td mat-cell *matCellDef="let funcionario">
+        <button mat-raised-button color="accent" routerLink="/funcionario/{{funcionario.departamentoId}}/editar/{{funcionario.id}}">Editar</button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Ações">
+      <th mat-header-cell *matHeaderCellDef> Ações </th>
+      <td mat-cell *matCellDef="let funcionario; let i = index">
+        <button mat-stroked-button color="warn" (click)="desativarFunc(i)" *ngIf="funcionario.ativo == true">Desativar</button>
+        <button mat-stroked-button color="accent" (click)="reativarFunc(i)" *ngIf="funcionario.ativo == false">Reativar</button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Excluir">
+      <th mat-header-cell *matHeaderCellDef> Excluir </th>
+      <td mat-cell *matCellDef="let funcionario">
+        <button mat-raised-button color="warn" routerLink="/funcionario/{{funcionario.departamentoId}}/deletar/{{funcionario.id}}">Deletar</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="colunasFuncionarios"></tr>
+    <tr mat-row *matRowDef="let row; columns: colunasFuncionarios;"></tr>
+  </table>
+</mat-card>

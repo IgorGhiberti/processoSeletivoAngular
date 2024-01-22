@@ -11,9 +11,9 @@ import { MatTableDataSource } from '@angular/material/table';
 export class DepartamentoComponent implements OnInit {
   departamentos!: Departamentos[];
   dataSource = new MatTableDataSource<Departamentos>(this.departamentos);
-  departamentoSelecionado: Departamentos | null = null;;
+  departamentoSelecionado: Departamentos | null = null;
   id!: number;
-  colunas = ['Situação', 'Id', 'Nome', 'Sigla', 'Editar', 'Ações', 'Excluir'];
+  colunas = ['Situação', 'Nome', 'Sigla', 'Editar', 'Ações', 'Excluir'];
 
   constructor(private departamentoService: DepartamentoService, private route: ActivatedRoute) {}
   ngOnInit(): void {
@@ -26,33 +26,18 @@ export class DepartamentoComponent implements OnInit {
     })
   }
 
-/*  buscar(): void {
-    this.departamentoService.getDepartamentoById(this.id).subscribe(
-      (data: Departamentos) => {
-        this.departamentoSelecionado = data;
-        if (this.departamentoSelecionado){
-        this.departamentos = this.departamentos.filter
-        (departamento => departamento.id === this.departamentoSelecionado?.id);
-      }},
-      (error) => {
-        console.error('Erro ao obter o departamento: ', error);
-        this.departamentoSelecionado = null;
-      }
-    );
-}*/
-
-aplicarFiltro(event: Event){
-  var valorFiltro = (event.target as HTMLInputElement).value.toLowerCase();
-  if (valorFiltro == '')
-  {
-    this.getDepartamentos();
+  aplicarFiltro(event: Event){
+    var valorFiltro = (event.target as HTMLInputElement).value.toLowerCase();
+    if (valorFiltro == '')
+    {
+      this.getDepartamentos();
+    }
+    else{
+      var listaData = this.dataSource.data;
+      var listaFiltrada = listaData.filter(element => element.nome.toLowerCase().includes(valorFiltro));
+      this.dataSource.data = listaFiltrada;
+    }
   }
-  else{
-    var listaData = this.dataSource.data;
-    var listaFiltrada = listaData.filter(element => element.nome.toLowerCase().includes(valorFiltro));
-    this.dataSource.data = listaFiltrada;
-  }
-}
 
 
   desativar(index: number) {
