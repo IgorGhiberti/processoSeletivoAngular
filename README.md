@@ -1,27 +1,19 @@
-# ConsumoApi
+# Projeto Front End Angular
+Este projeto front-end foi desenvolvido utilizando Angular, com o objetivo de consumir uma API criada com ASP.NET. O Angular Material foi utilizado para estilizar a interface do usuário. O projeto consiste em duas telas principais: uma para exibir os departamentos e outra para exibir os funcionários associados a cada departamento.
+## Funcionalidades Principais
+Ambas as telas, de departamentos e funcionários possuem as mesmas características e funcionalidades, com diferença de que, na tela de Funcionários, exibe o Nome, RG e Foto.
+1.  **Listagem de Departamentos:**  
+- Exibe uma tabela com os departamentos disponíveis. Nesta tabela, são exibidos os dados de: nome, sigla e situação do departamento (se está ativo ou inativo).
+2.  **Cadastro de Departamento:**
+- Um componente que permite ao usuário cadastrar um novo departamento colocando seu nome e sigla.
+3.  **Edição de Departamento:**
+- Um componente que permite ao usuário editar os dados de um departamento.
+4.  **Desativar e Reativar Departamento:**
+- Dentro da própria tabela, existem dois botões, um que desativa e outro que reativa o departamento. Importante mencionar que, apenas os departamentos desativados possuem a opção de reativar e apenas os ativos possuem a opção de desativar. Na coluna de "situação", os ativos são representados como tal por uma bola verde e os inativos por uma vermelha.
+5. **Deletar Departamento:**
+- Nessa opção, um novo componente que permite ao usuário rever os dados do departamento e realizar, se assim quisto, a exclusão total do departamento e seus registros.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.10.
+## Tecnologias Utilizadas
+- Angular
+- Angular Material
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
